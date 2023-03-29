@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie Local</string>
+    <string name="movies_label">Movies</string>
+    <string name="movie_image_description">Movie Image</string>
 </resources>

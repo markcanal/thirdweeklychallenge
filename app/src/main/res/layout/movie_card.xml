@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp">
+
+    <ImageView
+        android:id="@+id/img_movie"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/movie_image_description"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/img_movie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/img_movie"
+        app:layout_constraintTop_toBottomOf="@id/img_movie"
+        app:layout_constraintTop_toTopOf="@id/img_movie">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_movie_title"
+            style="@style/movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:gravity="start"
+            android:maxLines="4"
+            android:singleLine="false"
+            tools:text="Spider man movies (2002)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_movie_description"
+            style="@style/movie_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            android:maxLines="3"
+            android:singleLine="false"
+            tools:text="1hr 57mins - Action, Animation, Adventure , Drama, Scifi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_watchlist_tag"
+            style="@style/movie_watchlist_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:maxLines="3"
+            android:singleLine="false"
+            tools:text="ON MY WATCHLIST" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
