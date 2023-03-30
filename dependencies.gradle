@@ -19,7 +19,8 @@ ext {
             viewModel   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxVersion2_6_0",
             lifecycle   : "androidx.lifecycle:lifecycle-runtime-ktx:$androidxVersion2_6_0",
             roomRuntime : "androidx.room:room-runtime:$androidxVersion2_5_1",
-            roomCompiler: "androidx.room:room-compiler:$androidxVersion2_5_1"
+            roomCompiler: "androidx.room:room-compiler:$androidxVersion2_5_1",
+            roomKtx     : "androidx.room:room-ktx:$androidxVersion2_5_1"
 
     ]
 
