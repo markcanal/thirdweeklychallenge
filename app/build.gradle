@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -44,6 +47,7 @@ dependencies {
     implementation androidxDependencies.viewModel
     implementation androidxDependencies.lifecycle
     implementation constraintLayoutImplementation
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
     testImplementation junitTestImplementation
     androidTestImplementation junitAndroidTestImplementation
     androidTestImplementation espressoAndroidTestImplementation
@@ -52,6 +56,7 @@ dependencies {
     kapt(hiltAnnotationProcessor)
     //Room
     implementation androidxDependencies.roomRuntime
+    implementation androidxDependencies.roomKtx
     kapt(androidxDependencies.roomCompiler)
     //Timber
     implementation timberImplementation
