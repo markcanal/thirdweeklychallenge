@@ -43,6 +43,7 @@ object DatabaseModule {
     fun provideGson() = Gson()
 
     @Provides
+    @Singleton
     fun provideMovieRepositories(
         dao: MovieDao,
         mapper: MovieDataMapper,
