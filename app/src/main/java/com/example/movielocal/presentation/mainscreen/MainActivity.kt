@@ -21,7 +21,6 @@ class MainActivity @Inject constructor() :
         binding = ActivityMainBinding.inflate(layoutInflater)
         movieAdapter = MoviesAdapter()
         initMovieList()
-        observeData()
         setContentView(binding.root)
     }
 
@@ -31,6 +30,7 @@ class MainActivity @Inject constructor() :
             setHasFixedSize(true)
             adapter = movieAdapter
         }
+        observeData()
     }
 
     private fun observeData() {
@@ -48,4 +48,8 @@ class MainActivity @Inject constructor() :
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        initMovieList()
+    }
 }

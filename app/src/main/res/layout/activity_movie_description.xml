@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.moviedetails.MovieDescriptionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:id="@+id/img_movie_cover"
+            android:layout_width="130dp"
+            android:layout_height="220dp"
+            android:contentDescription="@string/movie_detail_image"
+            android:paddingBottom="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/avengers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_title"
+            style="@style/movie_title_head"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:maxLines="3"
+            android:singleLine="false"
+            app:layout_constraintEnd_toStartOf="@id/txv_rate"
+            app:layout_constraintStart_toEndOf="@id/img_movie_cover"
+            app:layout_constraintTop_toTopOf="@id/img_movie_cover"
+            tools:text="@string/movies_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_rate"
+            style="@style/movie_title_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="0dp"
+            app:layout_constraintEnd_toStartOf="@id/txv_over"
+            app:layout_constraintTop_toTopOf="@id/img_movie_cover"
+            tools:text="8.9" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="0dp"
+            android:gravity="bottom"
+            android:text="@string/_10"
+            app:layout_constraintBottom_toBottomOf="@id/txv_rate"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/acb_add_to_watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:text="@string/add_to_watchlist"
+            app:cornerRadius="15dp"
+            app:layout_constraintStart_toEndOf="@id/img_movie_cover"
+            app:layout_constraintTop_toBottomOf="@id/txv_title"
+            app:strokeColor="@color/black"
+            app:strokeWidth="0.5dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/acb_trailer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:gravity="center"
+            android:text="@string/watch_trailer"
+            app:cornerRadius="15dp"
+            app:layout_constraintStart_toEndOf="@id/img_movie_cover"
+            app:layout_constraintTop_toBottomOf="@id/acb_add_to_watch"
+            app:strokeColor="@color/black"
+            app:strokeWidth="0.5dp" />
+
+        <View
+            android:id="@+id/divider"
+            style="@style/Divider"
+            app:layout_constraintBottom_toBottomOf="@id/img_movie_cover"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description_label"
+            style="@style/movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:text="@string/short_description"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txv_movie_detail_description"
+            style="@style/movie_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:maxLines="5"
+            android:paddingBottom="20dp"
+            android:text="@string/short_description"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="@id/img_movie_cover"
+            app:layout_constraintTop_toBottomOf="@id/description_label" />
+
+        <View
+            android:id="@+id/divider1"
+            style="@style/Divider"
+            app:layout_constraintBottom_toBottomOf="@id/txv_movie_detail_description"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/details_label"
+            style="@style/movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:text="@string/short_description"
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+        <LinearLayout
+            android:id="@+id/genre_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/details_label">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/details_genre_label"
+                style="@style/movie_title"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:text="@string/genre"
+                android:textAlignment="textEnd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txv_details_genre"
+                style="@style/movie_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="start"
+                android:maxLines="6"
+                android:text="@string/short_description" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genre_holder">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/details_release_label"
+                style="@style/movie_title"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:text="@string/release_date"
+                android:textAlignment="textEnd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txv_details_release"
+                style="@style/movie_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="start"
+                android:maxLines="6"
+                android:text="@string/short_description" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

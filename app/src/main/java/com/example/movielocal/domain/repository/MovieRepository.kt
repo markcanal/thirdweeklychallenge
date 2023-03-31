@@ -10,6 +10,7 @@ interface MovieRepository {
     fun getAllMoviesOrder(isDesc: Boolean): Flow<List<MovieEntity>>?
     fun getAllMovies(): Flow<List<MovieEntity>>?
     fun getMoviesById(id: Int): Flow<MovieEntity>?
+    suspend fun updateMovie(movieEntity: MovieEntity)
     suspend fun deleteAllMovies()
     suspend fun setMovieFromAsset()
 }

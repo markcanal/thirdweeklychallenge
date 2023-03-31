@@ -4,4 +4,13 @@
     <string name="movie_image_description">Movie Image</string>
     <string name="on_my_watchlist">ON MY WATCHLIST</string>
     <string name="movie_detail">%1$s - %2$s</string>
+    <string name="movie_detail_image">Movie Detail Image</string>
+    <string name="_10">/10</string>
+    <string name="watch_trailer">WATCH TRAILER</string>
+    <string name="add_to_watchlist">ADD TO WATCHLIST</string>
+    <string name="remove_from_watchlist">REMOVE FROM WATCHLIST</string>
+    <string name="short_description">Short Description</string>
+    <string name="genre">Genre:</string>
+    <string name="release_date">Release date:</string>
+
 </resources>

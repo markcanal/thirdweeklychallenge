@@ -36,6 +36,7 @@ class MovieRepositoryImpl(
 
     override fun getAllMovies() = dao.getAllMoviesByOrderAsc()
     override fun getMoviesById(id: Int): Flow<MovieEntity>? = dao.getMovieById(id)
+    override suspend fun updateMovie(movieEntity: MovieEntity) = dao.updateMovie(movieEntity)
 
     override suspend fun deleteAllMovies() = dao.deleteAllMovie()
 

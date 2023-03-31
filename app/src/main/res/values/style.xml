@@ -11,6 +11,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="movie_title_head" parent="movie_title">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="movie_description">
         <item name="android:textSize">14sp</item>
     </style>
@@ -19,4 +24,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
 </resources>
