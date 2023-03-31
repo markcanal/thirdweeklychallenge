@@ -16,7 +16,7 @@ class MovieDataMapper {
         )
     }
 
-    fun getMovieEntity(details: MovieDetails): MovieEntity {
+    fun getMovieEntity(details: MovieDetails, cover: String?): MovieEntity {
         return MovieEntity(
             null,
             details.movieTitle,
@@ -25,7 +25,9 @@ class MovieDataMapper {
             details.duration,
             details.genre,
             details.releaseDate,
-            details.trailer
+            details.trailer,
+            watchList = false,
+            cover ?: ""
         )
     }
 }

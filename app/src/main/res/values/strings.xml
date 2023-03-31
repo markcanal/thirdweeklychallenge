@@ -2,4 +2,6 @@
     <string name="app_name">Movie Local</string>
     <string name="movies_label">Movies</string>
     <string name="movie_image_description">Movie Image</string>
+    <string name="on_my_watchlist">ON MY WATCHLIST</string>
+    <string name="movie_detail">%1$s - %2$s</string>
 </resources>

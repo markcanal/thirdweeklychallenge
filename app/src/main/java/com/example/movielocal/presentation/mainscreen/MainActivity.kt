@@ -1,11 +1,10 @@
 package com.example.movielocal.presentation.mainscreen
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
-import com.example.movielocal.common.base.BaseActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielocal.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -13,30 +12,40 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity @Inject constructor() :
-    BaseActivity<ActivityMainBinding>() {
+    AppCompatActivity() {
     private val viewModel: MainScreenViewModel by viewModels()
-    override val binding: ActivityMainBinding
-        get() = ActivityMainBinding.inflate(layoutInflater)
-
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var movieAdapter: MoviesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observer()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        movieAdapter = MoviesAdapter()
+        initMovieList()
+        observeData()
+        setContentView(binding.root)
     }
 
-    private fun observer() {
-        viewModel.isLoading.observe(this, Observer {
-            Timber.d("Loading: $it")
-            binding.progress.visibility = View.GONE
-            binding.mvoList.isVisible = it == false
-        })
-        viewModel.movie.observe(this, Observer {
-            val size = it?.size ?: 0
-            if (size > 0) {
-                Timber.d("movieObserve ${it?.get(0).toString()}")
+    private fun initMovieList() {
+        binding.mvoList.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            setHasFixedSize(true)
+            adapter = movieAdapter
+        }
+    }
 
+    private fun observeData() {
+        viewModel.isLoading.observe(this) {
+            binding.progress.isVisible = it
+        }
+        viewModel.getMovieList().observe(this) { movies ->
+            if (movies.isNullOrEmpty()) {
+                viewModel.getDataFromAsset()
+                Timber.e("No movie list.")
             } else {
-                Timber.d("movieObserve No movie")
+                Timber.e("We have movie list.")
+                movieAdapter.swapItems(movies)
             }
-        })
+        }
     }
+
 }

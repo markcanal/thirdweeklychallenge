@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.mainscreen.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/txv_title"
@@ -17,6 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mvo_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,5 +37,6 @@
         app:layout_constraintTop_toBottomOf="@id/txv_title"
         tools:itemCount="2"
         tools:listitem="@layout/movie_card" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
