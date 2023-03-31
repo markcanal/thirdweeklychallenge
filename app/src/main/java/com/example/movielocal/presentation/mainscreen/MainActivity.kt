@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielocal.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,11 +22,13 @@ class MainActivity @Inject constructor() :
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         movieAdapter = MoviesAdapter()
+        observeLoader()
         initMovieList()
         setContentView(binding.root)
     }
 
     private fun initMovieList() {
+        viewModel.getMovieList()
         binding.mvoList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
@@ -33,23 +37,27 @@ class MainActivity @Inject constructor() :
         observeData()
     }
 
-    private fun observeData() {
-        viewModel.isLoading.observe(this) {
-            binding.progress.isVisible = it
-        }
-        viewModel.getMovieList().observe(this) { movies ->
-            if (movies.isNullOrEmpty()) {
-                viewModel.getDataFromAsset()
-                Timber.e("No movie list.")
-            } else {
-                Timber.e("We have movie list.")
-                movieAdapter.swapItems(movies)
+    private fun observeLoader() {
+        lifecycleScope.launch {
+            viewModel.isLoading.collect {
+                Timber.e("Loading Movie List")
+                binding.progress.isVisible = it
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun observeData() {
+        lifecycleScope.launch {
+            viewModel.movie.collect { movie ->
+                if (movie != null) {
+                    movieAdapter.swapItems(movie)
+                }
+            }
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
         initMovieList()
     }
 }

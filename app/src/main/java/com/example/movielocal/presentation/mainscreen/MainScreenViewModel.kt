@@ -1,45 +1,47 @@
 package com.example.movielocal.presentation.mainscreen
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movielocal.data.entity.MovieEntity
-import com.example.movielocal.domain.repository.MovieRepository
-import com.example.movielocal.domain.usecase.MovieDataMapper
+import com.example.movielocal.domain.usecase.ManageMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    private val movieRepository: MovieRepository,
-    private val dataMapper: MovieDataMapper
+    private val manageMovie: ManageMovie
 ) :
     ViewModel() {
 
-    private var _movieList = MutableLiveData<List<MovieEntity>?>()
-    private var movie: LiveData<List<MovieEntity>?> = _movieList
+    private var _movieList = MutableStateFlow<List<MovieEntity>?>(mutableListOf())
+    var movie = _movieList.asStateFlow()
 
-    private var _isLoading = MutableLiveData(false)
-    var isLoading: LiveData<Boolean> = _isLoading
+    private var _isLoading = MutableStateFlow(false)
+    var isLoading = _isLoading.asStateFlow()
 
-    fun getDataFromAsset() {
-        viewModelScope.launch {
-            movieRepository.setMovieFromAsset()
-        }
+    private suspend fun getDataFromAsset() {
+        manageMovie.getMovieFromAssets().invoke()
     }
 
-    fun getMovieList(): LiveData<List<MovieEntity>?> {
+    fun getMovieList() {
         viewModelScope.launch {
-            _isLoading.postValue(true)
-            movieRepository.getAllMovies().let { movies ->
+            _isLoading.value = true
+            manageMovie.getMovieList().invoke().let { movies ->
                 movies?.collect {
-                    _movieList.postValue(it)
-                    _isLoading.postValue(false)
+                    Timber.e(it.toString())
+                    if (it.isEmpty()) {
+                        _isLoading.value = true
+                        getDataFromAsset()
+                    } else {
+                        _movieList.value = it
+                        _isLoading.value = false
+                    }
                 }
             }
         }
-        return movie
     }
 }
